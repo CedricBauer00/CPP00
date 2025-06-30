@@ -6,9 +6,30 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:59:40 by cbauer            #+#    #+#             */
-/*   Updated: 2025/06/26 16:00:09 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/06/27 16:58:18 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
-#define PHONE_BOOK_HPP
+#define PHONEBOOK_HPP
+
+#include "contact.hpp"
+#include <string>
+#include <iostream>
+#include <iomanip>
+
+class PhoneBook
+{
+	private:
+		Contact	contacts[8];
+		int		contactCount;
+		int		replaceIndex;
+	public:
+		PhoneBook();
+		void	addContact();
+		void	displayContacts() const;
+		void	displayContact(int index) const;
+		int		checkInput();
+};
+
+#endif
