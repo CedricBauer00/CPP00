@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:32:13 by cbauer            #+#    #+#             */
-/*   Updated: 2025/06/28 14:05:10 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/06/30 13:10:36 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-#include "contact.hpp"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 PhoneBook::PhoneBook() : contactCount(0), replaceIndex(0) {}
 
@@ -24,6 +24,8 @@ void	PhoneBook::addContact()
 
 void	PhoneBook::displayContacts() const
 {
+	std::string indexStr;
+
 	if (contactCount == 0)
 	{
 		std::cout << "No contacts found." << std::endl;
@@ -35,10 +37,20 @@ void	PhoneBook::displayContacts() const
 				<< "|" << std::setw(10) << "Nick Name"
 				<< "|" << std::endl;
 	for (int i = 0; i < contactCount; i++)
-		contacts[i].displayShort(i);
+	contacts[i].displayShort(i);
+	std::cout << "Index to view: ";
+	if (!std::getline(std::cin, indexStr))
+		return ;
+	if (indexStr.size() != 1 || !std::isdigit(indexStr[0]))
+	{
+		std::cout << "Invalid index!" << std::endl;
+		return ;
+	}
+	int index = std::atoi(indexStr.c_str());
+	displaySingle(index);
 }
 
-void	PhoneBook::displayContact(int index) const
+void	PhoneBook::displaySingle(int index) const
 {
 	if (index < 0 || index >= contactCount)
 	{

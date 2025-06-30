@@ -6,12 +6,12 @@
 /*   By: cbauer < cbauer@student.42heilbronn.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:23:19 by cbauer            #+#    #+#             */
-/*   Updated: 2025/06/28 14:04:06 by cbauer           ###   ########.fr       */
+/*   Updated: 2025/06/30 12:16:43 by cbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-#include "contact.hpp"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 int main()
 {
@@ -29,15 +29,7 @@ int main()
 		if (command == "ADD")
 			phoneBook.checkInput();
 		else if (command == "SEARCH")
-		{
 			phoneBook.displayContacts();
-			std::cout << "Index to view: ";
-			std::string indexStr;
-			if (!std::getline(std::cin, indexStr))
-				return (0);
-			int index = std::atoi(indexStr.c_str());
-			phoneBook.displayContact(index);
-		}
 		else if (command == "EXIT")
 			break ;
 		else
